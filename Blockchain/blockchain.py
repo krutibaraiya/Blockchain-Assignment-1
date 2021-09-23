@@ -3,7 +3,6 @@
 import hashlib
 import json
 from datetime import datetime
-from time import time
 from urllib.parse import urlparse
 import requests
 
@@ -16,8 +15,11 @@ class Blockchain(object):
         #List to store the blockchain
         self.chain = []
 
-        #List to store the transactions
-        self.current_transactions = []  
+        #List to store the unverified transactions
+        self.unverified_transactions = []  
+
+        #List to store verified transactions
+        self.verified_transactions = []
 
         #Genesis block        
         self.new_block(previous_hash = 1, proof = 100)
@@ -31,23 +33,25 @@ class Blockchain(object):
         block = {
             'index': len(self.chain) + 1,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            'transactions': self.current_transactions,
+            'transactions': self.unverified_transactions,
             'proof': proof,
             'previous_hash': previous_hash or self.hash(self.chain[-1])
         }
-
-        self.current_transactions = []
+        self.verified_transactions += self.unverified_transactions
+        print(self.verified_transactions)
+        self.unverified_transactions = []
 
         #appending the block at the end of the blockchain
         self.chain.append(block)
         return block
 
     #Method to add a new transaction in the next block
-    def new_transaction(self, sender, recipient, amount):
-        self.current_transactions.append({
-            'sender': sender,
-            'recipient': recipient,
-            'amount': amount
+    def new_transaction(self, sender, item_name, bill_amount):
+        self.unverified_transactions.append({
+            'Customer name': sender,
+            'Recipient': "Dexter's Coffee Shop",
+            'Item name': item_name,
+            'Total billing amount': bill_amount
         })
         return self.last_block['index'] + 1
 
@@ -94,9 +98,6 @@ class Blockchain(object):
 
         while current_index < len(chain):
             block = chain[current_index]
-            print(f'{last_block}')
-            print(f'{block}')
-            print("\n-----------\n") 
 
             #If the hash value of the current block isn't correct then return false
             if block['previous_hash'] != self.hash(last_block):
