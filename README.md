@@ -11,7 +11,7 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
 
 ## Implementation
 
-* The user has information regarding all the available blocks. A typical block in our blockchain contains the index, timestamp, list of all transactions (minimum 2 per block), proof and hash of the previous block.
+* The user has information regarding all the available blocks. A typical block in our blockchain contains the index, timestamp, list of all transactions (minimum 2 per block), nonce and hash of the previous block. Each transaction in the block consists of the customer name, item ordered, total billing amount and readily available timestamp of ordering.
 
 * None of the user's friends are able to edit the added transactions. Each block in the blockchain contains the hash of the previous block which makes it immutable. 
 
@@ -32,7 +32,7 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
 
     3) `/chain`
 
-        This GET method facilitates the user to view its entire blockchain.
+        This GET method facilitates the user to view its entire blockchain along with its length.
 
         ![Blockchain](./images/chain.png)
 
@@ -65,7 +65,7 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
     * `python3 main.py -p 5001`
     * `python3 main.py -p 5002`
 
-3) Run the API endpoints on an HTTP Client like Postman.
+3) Run the API endpoints on an HTTP Client like [Postman](https://www.postman.com/downloads/).
 
 ## Team members - (Group 15)
 1) Kruti Baraiya (2019A7PS1260H)
