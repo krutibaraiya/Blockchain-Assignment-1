@@ -9,6 +9,10 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
 * Dexter has all the information regarding the completed transactions
 * Dexter can add new nodes to the network resulting in a multi-node setup
 
+## Tech stack 
+* The project is built using Python-Flask framework and tested on Ubuntu.
+* Postman was used to test and interact with the endpoints.
+
 ## Implementation
 
 * The user has information regarding all the available blocks. A typical block in our blockchain contains the index, timestamp, list of all transactions (minimum 2 per block), nonce and hash of the previous block. Each transaction in the block consists of the customer name, item ordered, total billing amount and readily available timestamp of ordering.
@@ -46,10 +50,6 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
 
         This endpoint finds the longest validated chain by checking all the neighbouring nodes in the network and resolves conflict if any.
 
-
-## Tech stack 
-* The project is built using Python-Flask framework and tested on Ubuntu.
-* Postman was used to test and interact with the endpoints.
 
 ## How to run
 1) Make sure Python 3.8+ , Flask and requests library is installed.
