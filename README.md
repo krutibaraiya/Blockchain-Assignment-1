@@ -21,21 +21,25 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
     1) `/transactions/new`
 
         This POST method initiates a new transaction and requires the user to enter the customer name, item name and total billing amount in JSON format.
+
         ![New transaction](./images/transaction.png)
 
     2) `/mine`
 
-        This GET route mines a new block to the blockchain by calculating the proof of work. We will be able add a new block to the chain only if there are minimum 2 transactions in that block. 
+        This GET route mines a new block to the blockchain by calculating the proof of work. We will be able add a new block to the chain only if there are minimum 2 transactions in that block. Timestamp of each transaction are readily available.
+
         ![Block structure](./images/block.png)
 
     3) `/chain`
 
         This GET method facilitates the user to view its entire blockchain.
+
         ![Blockchain](./images/chain.png)
 
     4) `/nodes/add`
 
         This POST route requires the user to enter the list of URLs of the nodes to be added to the network. Make sure to run this endpoint from all ports before begining any transactions (in case you want to have a multi-node network).
+
         ![Multiple nodes](./images/nodes.png)
 
     5) `chain/resolve`
@@ -44,7 +48,7 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
 
 
 ## Tech stack 
-* The project is built using Python-Flask framework. 
+* The project is built using Python-Flask framework and tested on Ubuntu.
 * Postman was used to test and interact with the endpoints.
 
 ## How to run
@@ -53,7 +57,7 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
     * `pip3 install flask`
     * `pip3 install requests`
 
-2) Run the server:
+2) `cd Blockchain` and run the server:
     * `python3 main.py`
 
         We can open different network ports on the same machine to simulate multinode network

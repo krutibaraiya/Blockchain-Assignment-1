@@ -29,12 +29,12 @@ class Blockchain(object):
     
 
     # Method to create a new block in the Blockchain
-    def new_block(self, proof, previous_hash = None):
+    def new_block(self, proof,previous_hash = None):
         block = {
             'index': len(self.chain) + 1,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'transactions': self.unverified_transactions,
-            'proof': proof,
+            'nonce': proof,
             'previous_hash': previous_hash or self.hash(self.chain[-1])
         }
         self.verified_transactions += self.unverified_transactions
@@ -51,7 +51,8 @@ class Blockchain(object):
             'Customer name': sender,
             'Recipient': "Dexter's Coffee Shop",
             'Item name': item_name,
-            'Total billing amount': bill_amount
+            'Total billing amount': bill_amount,
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         })
         return self.last_block['index'] + 1
 
@@ -65,7 +66,8 @@ class Blockchain(object):
     @staticmethod
     def hash(block):       
         block_string = json.dumps(block, sort_keys = True).encode()
-        return hashlib.sha256(block_string).hexdigest()
+        hash_val = hashlib.sha256(block_string).hexdigest()
+        return hash_val
     
 
     #Method to calculate the proof of work
@@ -104,7 +106,7 @@ class Blockchain(object):
                 return False
             
             #If the proof of work is incorrect then return false            
-            if not self.valid_proof(last_block['proof'], block['proof']):
+            if not self.valid_proof(last_block['nonce'], block['nonce']):
                 return False
             
             last_block = block

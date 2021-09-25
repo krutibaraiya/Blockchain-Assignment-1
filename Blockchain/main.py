@@ -15,7 +15,7 @@ def mine():
     # To ensure that a new block is mined only if there are atleast 2 transactions
     if len(blockchain.unverified_transactions) >= 2:
         last_block = blockchain.last_block
-        last_proof = last_block['proof']
+        last_proof = last_block['nonce']
         proof = blockchain.proof_of_work(last_proof)
         previous_hash = blockchain.hash(last_block)
         block = blockchain.new_block(proof, previous_hash)
@@ -24,7 +24,7 @@ def mine():
             'message': "New block mined!",
             'index': block['index'],
             'transactions': block['transactions'],
-            'proof': block['proof'],
+            'nonce': block['nonce'],
             'previous_hash': block['previous_hash']
         }
         print(len(blockchain.unverified_transactions))
@@ -32,7 +32,7 @@ def mine():
 
     else:
         response = {
-            'message' : 'Not enough transactions to mine a new block!'
+            'message' : 'Not enough transactions to mine a new block and add to chain!'
         }
         print(len(blockchain.unverified_transactions))
         return jsonify(response),400
