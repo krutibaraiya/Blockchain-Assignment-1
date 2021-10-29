@@ -68,6 +68,6 @@ Implementation of a simple blockchain for Dexter's coffee shop with the followin
 3) Run the API endpoints on an HTTP Client like [Postman](https://www.postman.com/downloads/).
 
 ## Team members - (Group 15)
-1) Kruti Baraiya (2019A7PS1260H)
-2) Vedansh Srivastava (2019A7PS0323H)
-3) Umang Agarwal (2019A7PS0185H)
+1) [Kruti Baraiya](https://github.com/krutibaraiya) (2019A7PS1260H)
+2) [Vedansh Srivastava](https://github.com/vedansh-srivastava) (2019A7PS0323H)
+3) [Umang Agarwal](https://github.com/UmangAgarwal17) (2019A7PS0185H)
